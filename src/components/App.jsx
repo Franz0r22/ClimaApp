@@ -16,19 +16,21 @@ function App() {
   const [lat, setLat] = useState();
   const [lon, setLon] = useState();
   const [temperature, setTemperature] = useState();
+  const [weather, setWeather] = useState();
+  const [location, setLocation] = useState();
   const cityRef = useRef();
 
 
   //Efectos
   useEffect(() => {
     if (city != undefined) {
-      locationCall(city, setLat, setLon, setTemperature);
+      locationCall(city, setLat, setLon);
     }
   }, [city]);
   
   useEffect(() => {
     if (lat !== undefined && lon !== undefined) {
-      apiCall(lat, lon, setTemperature);
+      apiCall(lat, lon, setTemperature, setWeather, setLocation);
     }
   }, [lat, lon]);
 
@@ -53,9 +55,15 @@ function App() {
     setCity(cityRef.current.value)
   }
 
+  //Round
+  const roundTemp = (temperature) => {
+    return Math.round(temperature);
+  }
+
+
   return (
     <>
-      <Container className="py-5">
+      {/* <Container className="py-5">
         <Row>
           <Col>
             <InputGroup className="mb-3">
@@ -79,6 +87,43 @@ function App() {
           <Col className='text-center'>
             {temperature && <p>La temperatura actual es {temperature.temp}</p>}
           </Col>
+        </Row>
+      </Container> */}
+      <Container fluid>
+        <Row>
+          <Col lg={3} className="sideBlock">
+            <div className="d-flex justify-content-between align-items-center mx-4 mt-5">
+              <button className="btn-search">Search for places</button>
+              <div className="bgIcon">
+                <span className="material-symbols-outlined colorIcon">
+                  my_location
+                </span>
+              </div>
+            </div>
+            <div className="text-center mt-image">
+              <img src="./src/assets/Clear.png" alt="Wheater Image" />
+            </div>
+            <div>
+              {temperature && (
+                <h2 className="temperatureTitle mt-temp">
+                  {roundTemp(temperature.temp)}
+                  <span className="celsius">°C</span>
+                </h2>
+              )}
+            </div>
+            <div>
+              {weather && <h2 className="weatherTitle mt-2">{weather.main}</h2>}
+            </div>
+            <div className='d-flex align-items-center justify-content-center'>
+              <span class="material-symbols-outlined locationIcon">location_on</span>
+              {location && (
+                <h2 className="locationTitle mt-2">
+                  {location}
+                </h2>
+              )}
+            </div>
+          </Col>
+          <Col lg={9}></Col>
         </Row>
       </Container>
     </>

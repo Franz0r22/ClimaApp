@@ -1,6 +1,6 @@
 const apikey = "e16fd543e91da27dcdfbdf131b88716d";
 
-const locationCall = async (city, latState, lonState, setTemperature) => {
+const locationCall = async (city, latState, lonState) => {
   
   try {
     const response = await fetch(
@@ -21,7 +21,6 @@ const locationCall = async (city, latState, lonState, setTemperature) => {
     latState(latitude);
     lonState(longitude);
 
-    //await apiCall(latitude, longitude, setTemperature);
 
   } 
   
@@ -32,7 +31,7 @@ const locationCall = async (city, latState, lonState, setTemperature) => {
   }
 };
 
-const apiCall = async (lat, lon, temperature) => {
+const apiCall = async (lat, lon, temperature, weather, location) => {
 
   try {
     
@@ -48,7 +47,15 @@ const apiCall = async (lat, lon, temperature) => {
 
     const temperatureValues = data.main;
 
+    const [weatherValue] = data.weather;
+
+    const locationValue = data.name;
+
     temperature(temperatureValues);
+
+    weather(weatherValue);
+
+    location(locationValue);
   
   } 
   
