@@ -60,6 +60,44 @@ function App() {
     return Math.round(temperature);
   }
 
+  //Fecha
+  const date = new Date();
+  const today = date.getDate();
+  const month = date.getMonth() + 1;
+
+  const dayNames = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+
+  const dayName = today => {
+    return dayNames[new Date(today).getDay()];
+  };
+
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  
+  const monthName = month => {
+    return monthNames[month - 1];
+  };  
+
 
   return (
     <>
@@ -100,9 +138,11 @@ function App() {
                 </span>
               </div>
             </div>
+            {weather && (
             <div className="text-center mt-image">
-              <img src="./src/assets/Clear.png" alt="Wheater Image" />
+              <img src={`./src/assets/${weather.description}.png`} alt="Wheater Image" />
             </div>
+            )}
             <div>
               {temperature && (
                 <h2 className="temperatureTitle mt-temp">
@@ -114,13 +154,16 @@ function App() {
             <div>
               {weather && <h2 className="weatherTitle mt-2">{weather.main}</h2>}
             </div>
-            <div className='d-flex align-items-center justify-content-center'>
-              <span class="material-symbols-outlined locationIcon">location_on</span>
+            <div className='d-flex align-items-center justify-content-center mt-4'>
+              <span className="material-symbols-outlined locationIcon">location_on</span>
               {location && (
                 <h2 className="locationTitle mt-2">
                   {location}
                 </h2>
               )}
+            </div>
+            <div className='locationTitle mt-4'>
+              {dayName(today)}, {today} {monthName(month)}
             </div>
           </Col>
           <Col lg={9}></Col>
