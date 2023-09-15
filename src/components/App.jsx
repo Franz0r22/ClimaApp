@@ -18,6 +18,9 @@ function App() {
   const [temperature, setTemperature] = useState();
   const [weather, setWeather] = useState();
   const [location, setLocation] = useState();
+  const [menuOpen, setMenuOpen] = useState(false);
+  
+  //referencias
   const cityRef = useRef();
 
 
@@ -34,25 +37,37 @@ function App() {
     }
   }, [lat, lon]);
 
+//Efecto ubicación actual
+const getCurrentLocation = () => {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const { latitude, longitude } = position.coords;
+      setLat(latitude);
+      setLon(longitude);
+    });
+  } else {
+    console.error("La geolocalización no está disponible en este navegador.");
+  }
+};
 
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        const { latitude, longitude } = position.coords;
-        
-        setLat(latitude);
-        setLon(longitude);
-
-      });
-    } else {
-      console.error("La geolocalización no está disponible en este navegador.");
-    }
-  }, []);
+useEffect(() => {
+  getCurrentLocation();
+}, []);
 
 
   //Eventos
   const handleClickSearch = () => {
     setCity(cityRef.current.value)
+    cityRef.current.value = "";
+    setMenuOpen(!menuOpen);
+  }
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleClickResetLocation = () => {
+    getCurrentLocation();
   }
 
   //Round
@@ -130,17 +145,18 @@ function App() {
       <Container fluid>
         <Row>
           <Col lg={3} className="sideBlock">
+            <div className='cloudBlock'></div>
             <div className="d-flex justify-content-between align-items-center mx-4 mt-5">
-              <button className="btn-search">Search for places</button>
+              <button className="btn-places" onClick={toggleMenu}>Search for places</button>
               <div className="bgIcon">
-                <span className="material-symbols-outlined colorIcon">
+                <span className="material-symbols-outlined colorIcon" onClick={handleClickResetLocation}>
                   my_location
                 </span>
               </div>
             </div>
             {weather && (
             <div className="text-center mt-image">
-              <img src={`./src/assets/${weather.description}.png`} alt="Wheater Image" />
+              <img className="imgWeather" src={`./src/assets/${weather.description}.png`} alt="Wheater Image" />
             </div>
             )}
             <div>
@@ -151,7 +167,7 @@ function App() {
                 </h2>
               )}
             </div>
-            <div>
+            <div className='mt-4'>
               {weather && <h2 className="weatherTitle mt-2">{weather.main}</h2>}
             </div>
             <div className='d-flex align-items-center justify-content-center mt-4'>
@@ -162,8 +178,24 @@ function App() {
                 </h2>
               )}
             </div>
-            <div className='locationTitle mt-4'>
+            <div className='locationTitle my-4'>
               {dayName(today)}, {today} {monthName(month)}
+            </div>
+            <div className={menuOpen ? 'menu-location open' : 'menu-location'}>
+              <div className='text-end me-4'>
+                <span className="material-symbols-outlined closeIcon" onClick={toggleMenu}>
+                  close
+                </span>
+              </div>
+              <div className='d-flex justify-content-center mt-3'>
+              <div className='relative'>
+                {/* <span class="material-symbols-outlined searchIcon absolute">
+                  search
+                </span> */}
+                  <input className="inputSearch" type="text" placeholder="Search location" ref={cityRef}/>
+              </div>
+                <button className='btn-search' onClick={ handleClickSearch }>Search</button>
+              </div>
             </div>
           </Col>
           <Col lg={9}></Col>

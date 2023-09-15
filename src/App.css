@@ -11,15 +11,15 @@
     position: relative;
 }
 
-.sideBlock::before {
+.cloudBlock::before {
     content: "";
     position: absolute;
-    top: 0;
+    top: 120px;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 45vh;
     background: url('assets/Cloud-background.png');
-    background-size: 725px;
+    background-size: 560px;
     background-position: 50% 25%;
     background-repeat: no-repeat;
     opacity: 0.1; 
@@ -35,30 +35,46 @@
 
 .colorIcon {
     color: white;
-    padding: 8px;
+    padding: 5.5px;
 }
 
 .bgIcon {
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     border-radius: 50%;
     background-color: #787a86;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     cursor: pointer;
+    transition: 0.3s;
 }
 
-.btn-search {
+.bgIcon:hover {
+    background-color: #53545b;
+    transition: 0.3s;
+}
+
+.btn-places {
     background: #6E707A;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border: none;
     color: white;
     padding: 10px 20px;
     cursor: pointer;
-    z-index: 2;
+    transition: 0.3s;
+    font-size: 12px;
+}
+
+.btn-places:hover {
+    background-color: #53545b;
+    transition: 0.3s;
 }
 
 .mt-image {
-    margin-top: 8rem;
+    margin-top: 7rem;
+}
+
+.imgWeather {
+    width: 160px;
 }
 
 .mt-temp {
@@ -90,7 +106,7 @@
 
 .locationTitle {
     color: #88869D;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
     line-height: normal;
     text-align: center;
@@ -98,4 +114,57 @@
 
 .locationIcon {
     color: #88869D;
+}
+
+.inputSearch {
+    position: relative;
+    border: 1px solid #E7E7EB;
+    padding: 10px 30px;
+    background-color: transparent;
+    outline: none;
+    color: white;
+    font-size: 14px;
+}
+
+.btn-search {
+    background-color: #3C47E9;
+    color: white;
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    font-weight: 600;
+    margin-left: 10px;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.btn-search:hover {
+    background-color: #2932a7;
+    transition: 0.3s;
+}
+
+.menu-location {
+    position: absolute;
+    top: 0px;
+    left: -400px;
+    width: 100%;
+    height: 100%;
+    background: #1E213A;
+    transition: 0.5s;
+}
+
+.open {
+    left: 0;
+    transition: 0.5s;
+}
+
+.closeIcon {
+    color: white;
+    padding-right: 5px;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.searchIcon {
+    color: #616475;
 }
