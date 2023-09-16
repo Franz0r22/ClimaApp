@@ -90,8 +90,9 @@ useEffect(() => {
     'Saturday',
   ];
 
-  const dayName = today => {
-    return dayNames[new Date(today).getDay()];
+  const dayName = () => {
+    const day = date.getDay();
+    return dayNames[day];
   };
 
   const monthNames = [
@@ -198,7 +199,64 @@ useEffect(() => {
               </div>
             </div>
           </Col>
-          <Col lg={9}></Col>
+          <Col lg={9} className='contentBlock'>
+            <Container className='containerBox'>
+              <Row className="gx-4">
+                <Col>
+                  <div className='card-forecast'>
+                   <p className='forecastTitle'>Tomorrow</p>
+                  </div>
+                </Col>
+                <Col>
+                  <div className='card-forecast'>
+                    <p className='forecastTitle'>Monday</p>
+                  </div>
+                </Col>
+                <Col>
+                  <div className='card-forecast'>
+                    <p className='forecastTitle'>Tuesday</p>
+                  </div>
+                </Col>
+                <Col>
+                  <div className='card-forecast'>
+                   <p className='forecastTitle'>Wednesday</p>
+                  </div>
+                </Col>
+                <Col>
+                  <div className='card-forecast'>
+                    <p className='forecastTitle'>Thursday</p>
+                  </div>
+                </Col>
+              </Row>
+              <Row className='mt-5 mb-4'>
+                <Col>
+                  <h4 className='itemsTitle mt-2'>Today's Highlight</h4>
+                </Col>
+              </Row>
+              <Row className='g-5'>
+                <Col lg={6}>
+                  <div className='card-items'>
+                    Hola
+                  </div>
+                </Col>
+                <Col lg={6}>
+                  <div  className='card-items'>
+                    Hola
+                  </div>
+                </Col>
+                <Col lg={6}>
+                  <div  className='card-items'>
+                    Hola
+                  </div>
+                </Col>
+                <Col lg={6}>
+                  <div  className='card-items'>
+                    Hola
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          </Col>
         </Row>
       </Container>
     </>

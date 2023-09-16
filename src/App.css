@@ -104,6 +104,22 @@
     text-align: center;
 }
 
+.itemsTitle {
+    color: #E7E7EB;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: normal;
+    text-align: start;
+}
+
+.forecastTitle {
+    color: #E7E7EB;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+}
+
 .locationTitle {
     color: #88869D;
     font-size: 16px;
@@ -168,3 +184,22 @@
 .searchIcon {
     color: #616475;
 }
+
+.contentBlock {
+    background-color: #100E1D;
+}
+
+.card-forecast {
+    background-color: #1E213A;
+    padding: 20px;
+}
+
+.card-items {
+    background-color: #1E213A;
+    padding: 20px;
+}
+
+.containerBox {
+    padding: 125px 150px !important;
+}
+
