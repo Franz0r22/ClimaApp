@@ -259,7 +259,10 @@ useEffect(() => {
                     <>
                       <p className='itemsValue'>{temperature.humidity}
                         <small className='smallText'> %</small>
-                      </p>                
+                      </p>
+                      <div class="d-flex justify-content-center">
+                        <progress className='progressBar' max="100" value={temperature.humidity}></progress>               
+                      </div>
                     </>
                        } 
                   </div>
