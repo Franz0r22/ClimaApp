@@ -19,7 +19,10 @@ function App() {
   const [weather, setWeather] = useState();
   const [location, setLocation] = useState();
   const [menuOpen, setMenuOpen] = useState(false);
-  
+  const [wind, setWind] = useState();
+  const [windDegrees, setWindDegrees] = useState();
+  const [visibility, setVisibility] = useState();
+
   //referencias
   const cityRef = useRef();
 
@@ -33,7 +36,7 @@ function App() {
   
   useEffect(() => {
     if (lat !== undefined && lon !== undefined) {
-      apiCall(lat, lon, setTemperature, setWeather, setLocation);
+      apiCall(lat, lon, setTemperature, setWeather, setLocation, setWind, setWindDegrees, setVisibility);
     }
   }, [lat, lon]);
 
@@ -71,9 +74,37 @@ useEffect(() => {
   }
 
   //Round
-  const roundTemp = (temperature) => {
-    return Math.round(temperature);
+  const roundValue = (value) => {
+    return Math.round(value);
   }
+
+  //Convertir Mts/s a Km/h
+  const convertToKmxH = (value) => {
+    return roundValue(value * 3.6)
+  }
+
+  //Convertir Mts a Kms
+  const convertToKm = (value) => {
+    return roundValue(value/100);
+  }
+
+
+  //Dirección del viento
+  const windDirection = (windDegrees) => {
+    // Direcciones cardinales en orden
+    const cardinalDirections = ['North', 'North-Northeast', 'Northeast', 'East-Northeast', 'East', 'East-Southeast', 'Southeast', 'South-Southeast', 'South', 'South-Southwest', 'Southwest', 'West-Southwest', 'West', 'West-Northwest', 'Northwest', 'North-Northwest', 'North'];
+  
+    // Calcular el índice en el arreglo usando los grados
+    const index = Math.round((windDegrees % 360) / 22.5);
+    
+    // Asegurarse de que el índice esté dentro del rango del arreglo
+    const directionIndex = index >= 0 && index < cardinalDirections.length ? index : 0;
+  
+    // Devolver la dirección cardinal correspondiente
+    return cardinalDirections[directionIndex];
+  };
+  
+  const direction = windDirection(windDegrees);
 
   //Fecha
   const date = new Date();
@@ -117,32 +148,6 @@ useEffect(() => {
 
   return (
     <>
-      {/* <Container className="py-5">
-        <Row>
-          <Col>
-            <InputGroup className="mb-3">
-              <Form.Control
-                placeholder="Search location"
-                aria-label="Search location"
-                aria-describedby="search"
-                ref={cityRef}
-              />
-              <Button
-              variant="outline-secondary"
-              id="search-button"
-              onClick={ handleClickSearch }
-              >
-              Search...
-              </Button>
-            </InputGroup>
-          </Col>
-        </Row>
-        <Row>
-          <Col className='text-center'>
-            {temperature && <p>La temperatura actual es {temperature.temp}</p>}
-          </Col>
-        </Row>
-      </Container> */}
       <Container fluid>
         <Row>
           <Col lg={3} className="sideBlock">
@@ -163,7 +168,7 @@ useEffect(() => {
             <div>
               {temperature && (
                 <h2 className="temperatureTitle mt-temp">
-                  {roundTemp(temperature.temp)}
+                  {roundValue(temperature.temp)}
                   <span className="celsius">°C</span>
                 </h2>
               )}
@@ -236,22 +241,51 @@ useEffect(() => {
               <Row className='g-5'>
                 <Col lg={6}>
                   <div className='card-items'>
-                    Hola
+                    <p className='forecastTitle'>Wind Status</p>
+                    { wind && 
+                    <>
+                      <p className='itemsValue'>{convertToKmxH(wind.speed)}
+                        <small className='smallText'> km/h</small>
+                      </p>
+                      <p className='forecastTitle mb-0'>{direction}</p>                   
+                    </>
+                       } 
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div  className='card-items'>
-                    Hola
+                    <p className='forecastTitle'>Humidity</p>
+                    { temperature && 
+                    <>
+                      <p className='itemsValue'>{temperature.humidity}
+                        <small className='smallText'> %</small>
+                      </p>                
+                    </>
+                       } 
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div  className='card-items'>
-                    Hola
+                    <p className='forecastTitle'>Visibility</p>
+                    { visibility && 
+                    <>
+                      <p className='itemsValue'>{convertToKm(visibility)}
+                        <small className='smallText'> Km</small>
+                      </p>                
+                    </>
+                       } 
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div  className='card-items'>
-                    Hola
+                    <p className='forecastTitle'>Air pressure</p>
+                    { temperature && 
+                    <>
+                      <p className='itemsValue'>{temperature.pressure}
+                        <small className='smallText'> mb</small>
+                      </p>                
+                    </>
+                       } 
                   </div>
                 </Col>
               </Row>

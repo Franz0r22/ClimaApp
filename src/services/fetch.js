@@ -31,7 +31,7 @@ const locationCall = async (city, latState, lonState) => {
   }
 };
 
-const apiCall = async (lat, lon, temperature, weather, location) => {
+const apiCall = async (lat, lon, temperature, weather, location, wind, direction, visibility) => {
 
   try {
     
@@ -51,11 +51,23 @@ const apiCall = async (lat, lon, temperature, weather, location) => {
 
     const locationValue = data.name;
 
+    const windValue = data.wind;
+
+    const windDirection = data.wind.deg;
+
+    const visibilityValue = data.visibility;
+
     temperature(temperatureValues);
 
     weather(weatherValue);
 
     location(locationValue);
+
+    wind(windValue);
+
+    direction(windDirection);
+
+    visibility(visibilityValue);
   
   } 
   

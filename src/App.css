@@ -120,6 +120,22 @@
     text-align: center;
 }
 
+.itemsValue {
+    color: #E7E7EB;
+    font-size: 56px;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+}
+
+.smallText {
+    color: #E7E7EB;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+}
+
 .locationTitle {
     color: #88869D;
     font-size: 16px;
