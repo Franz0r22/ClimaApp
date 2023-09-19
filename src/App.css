@@ -107,7 +107,7 @@
 .itemsTitle {
     color: #E7E7EB;
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: normal;
     text-align: start;
 }
@@ -216,9 +216,30 @@
 }
 
 .containerBox {
-    padding: 125px 150px !important;
+    padding: 50px 125px 50px 125px !important; 
 }
-.progressBar {
-    
+
+.bgWind {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: #616475;
+    font-size: 20px;
+    color: #E7E7EB;
+    padding-top: 1px;
 }
+
+progress {
+    border-radius: 12px; 
+    height: 10px;
+    width: 75%;
+  }
+  progress::-webkit-progress-bar {
+    background-color: #E7E7EB;
+    border-radius: 12px;
+  }
+  progress::-webkit-progress-value {
+    background-color: #FFEC65;
+    border-radius: 12px;
+  }
 
