@@ -99,7 +99,7 @@ function App() {
 
   //Convertir Mts a Kms
   const convertToKm = (value) => {
-    return roundValue(value / 100);
+    return roundValue(value / 1000);
   };
 
   //Dirección del viento
@@ -181,7 +181,7 @@ function App() {
     <>
       <Container fluid>
         <Row>
-          <Col lg={3} className="sideBlock">
+          <Col md={5} lg={4} xl={3} className="sideBlock">
             <div className="cloudBlock"></div>
             <div className="d-flex justify-content-between align-items-center mx-4 mt-5">
               <button className="btn-places" onClick={toggleMenu}>
@@ -252,11 +252,11 @@ function App() {
               </div>
             </div>
           </Col>
-          <Col lg={9} className="contentBlock">
+          <Col md={7} lg={8} xl={9} className="contentBlock">
             <Container className="containerBox">
               <Row className="gx-4">
                 <Col>
-                  <div className="card-forecast">
+                  <div className="card-forecast h-100">
                     <p className="forecastTitle">Tomorrow</p>
                     {dailyForecast && (
                       <div>
@@ -269,7 +269,7 @@ function App() {
                                     className=""
                                     src={`./src/assets/${dailyForecast[date].weather}.png`}
                                     alt="Wheater Image"
-                                    width={75}
+                                    height={60}
                                   />
                                 </div>
                                 <div className="d-flex justify-content-between mt-4">
@@ -283,14 +283,14 @@ function App() {
                               </div>
                             );
                           }
-                          return null; // Ignorar otras fechas
+                          return null;
                         })}
                       </div>
                     )}
                   </div>
                 </Col>
                 <Col>
-                  <div className="card-forecast">
+                  <div className="card-forecast h-100">
                     <p className="forecastTitle">
                       {today + 2} {monthName(month)}
                     </p>
@@ -305,7 +305,7 @@ function App() {
                                     className=""
                                     src={`./src/assets/${dailyForecast[date].weather}.png`}
                                     alt="Wheater Image"
-                                    width={75}
+                                    height={60}
                                   />
                                 </div>
                                 <div className="d-flex justify-content-between mt-4">
@@ -319,14 +319,14 @@ function App() {
                               </div>
                             );
                           }
-                          return null; // Ignorar otras fechas
+                          return null;
                         })}
                       </div>
                     )}                    
                   </div>
                 </Col>
                 <Col>
-                  <div className="card-forecast">
+                  <div className="card-forecast h-100">
                     <p className="forecastTitle">
                       {today + 3} {monthName(month)}
                     </p>
@@ -341,7 +341,7 @@ function App() {
                                     className=""
                                     src={`./src/assets/${dailyForecast[date].weather}.png`}
                                     alt="Wheater Image"
-                                    width={75}
+                                    height={60}
                                   />
                                 </div>
                                 <div className="d-flex justify-content-between mt-4">
@@ -355,14 +355,14 @@ function App() {
                               </div>
                             );
                           }
-                          return null; // Ignorar otras fechas
+                          return null;
                         })}
                       </div>
                     )}                    
                   </div>
                 </Col>
                 <Col>
-                  <div className="card-forecast">
+                  <div className="card-forecast h-100">
                     <p className="forecastTitle">
                       {today + 4} {monthName(month)}
                     </p>
@@ -377,7 +377,7 @@ function App() {
                                     className=""
                                     src={`./src/assets/${dailyForecast[date].weather}.png`}
                                     alt="Wheater Image"
-                                    width={75}
+                                    height={60}
                                   />
                                 </div>
                                 <div className="d-flex justify-content-between mt-4">
@@ -391,14 +391,14 @@ function App() {
                               </div>
                             );
                           }
-                          return null; // Ignorar otras fechas
+                          return null;
                         })}
                       </div>
                     )}                    
                   </div>
                 </Col>
                 <Col>
-                  <div className="card-forecast">
+                  <div className="card-forecast h-100">
                     <p className="forecastTitle">
                       {today + 5} {monthName(month)}
                     </p>
@@ -413,7 +413,7 @@ function App() {
                                     className=""
                                     src={`./src/assets/${dailyForecast[date].weather}.png`}
                                     alt="Wheater Image"
-                                    width={75}
+                                    height={60}
                                   />
                                 </div>
                                 <div className="d-flex justify-content-between mt-4">
@@ -427,7 +427,7 @@ function App() {
                               </div>
                             );
                           }
-                          return null; // Ignorar otras fechas
+                          return null;
                         })}
                       </div>
                     )}                    
