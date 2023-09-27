@@ -215,8 +215,22 @@
     padding: 20px;
 }
 
-.containerBox {
-    padding: 50px 125px 50px 125px;
+@media (max-width: 991px) {
+    #containerBox {
+        padding: 50px 125px 50px 125px;
+    }
+}
+
+@media (max-width: 1140px) {
+    #containerBox {
+        padding: 100px 75px 100px 75px;
+    }
+}
+
+@media (min-width: 1140px) {
+    #containerBox {
+        padding: 100px 125px 100px 125px;
+    }
 }
 
 .bgWind {
@@ -242,4 +256,58 @@ progress {
     background-color: #FFEC65;
     border-radius: 12px;
   }
+
+.cities-search {
+    border: 2px solid #616475;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cities-search:hover {
+    background-color: #3C47E9;
+    transition: 0.3s;
+    border: 2px solid #fff;
+}
+
+.animate {
+    animation: myAnim 3s ease-in-out infinite;
+}
+
+@keyframes myAnim {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.animatebG {
+    animation: atmosphericBackground 20s linear infinite;
+}
+
+@keyframes atmosphericBackground {
+    0% {
+        background-color: #4d92d5; /* Azul claro */
+    }
+    25% {
+        background-color: #f9d667; /* Amarillo */
+    }
+    50% {
+        background-color: #ffaa33; /* Naranja */
+    }
+    75% {
+        background-color: #f9d667; /* Amarillo */
+    }
+    100% {
+        background-color: #4d92d5; /* Azul claro */
+    }
+}
 

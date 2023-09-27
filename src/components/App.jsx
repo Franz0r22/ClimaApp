@@ -87,6 +87,24 @@ function App() {
     getCurrentLocation();
   };
 
+  const handleClickNYLocation = () => {
+    setLat(40.73061);
+    setLon(-73.935242);
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleClickLondonLocation = () => {
+    setLat(51.509865);
+    setLon(-0.118092);
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleClickMadridLocation = () => {
+    setLat(40.416775);
+    setLon(-3.703790);
+    setMenuOpen(!menuOpen);
+  };
+
   //Round
   const roundValue = (value) => {
     return Math.round(value);
@@ -199,7 +217,7 @@ function App() {
             {weather && (
               <div className="text-center mt-image">
                 <img
-                  className="imgWeather"
+                  className="imgWeather animate"
                   src={`./src/assets/${weather.description}.png`}
                   alt="Wheater Image"
                 />
@@ -235,10 +253,7 @@ function App() {
                 </span>
               </div>
               <div className="d-flex justify-content-center mt-3">
-                <div className="relative">
-                  {/* <span class="material-symbols-outlined searchIcon absolute">
-                  search
-                </span> */}
+                <div>
                   <input
                     className="inputSearch"
                     type="text"
@@ -250,12 +265,23 @@ function App() {
                   Search
                 </button>
               </div>
+              <div className="mt-5">
+                <div className="cities-search mx-4" onClick={handleClickNYLocation}>
+                  New York
+                </div>
+                <div className="cities-search mx-4 mt-4" onClick={handleClickLondonLocation}>
+                  London
+                </div>
+                <div className="cities-search mx-4 mt-4" onClick={handleClickMadridLocation}>
+                  Madrid
+                </div>
+              </div>
             </div>
           </Col>
           <Col md={7} lg={8} xl={9} className="contentBlock">
-            <Container className="containerBox">
-              <Row className="gx-4">
-                <Col>
+            <Container id="containerBox">
+              <Row className="g-4">
+                <Col xs={12} sm={6} md={12} lg={4} xl={4} xxl>
                   <div className="card-forecast h-100">
                     <p className="forecastTitle">Tomorrow</p>
                     {dailyForecast && (
@@ -289,7 +315,7 @@ function App() {
                     )}
                   </div>
                 </Col>
-                <Col>
+                <Col xs={12} sm={6} md={12} lg={4} xl={4} xxl>
                   <div className="card-forecast h-100">
                     <p className="forecastTitle">
                       {today + 2} {monthName(month)}
@@ -322,10 +348,10 @@ function App() {
                           return null;
                         })}
                       </div>
-                    )}                    
+                    )}
                   </div>
                 </Col>
-                <Col>
+                <Col xs={12} sm={6} md={12} lg={4} xl={4} xxl>
                   <div className="card-forecast h-100">
                     <p className="forecastTitle">
                       {today + 3} {monthName(month)}
@@ -358,10 +384,10 @@ function App() {
                           return null;
                         })}
                       </div>
-                    )}                    
+                    )}
                   </div>
                 </Col>
-                <Col>
+                <Col xs={12} sm={6} md={12} lg={4} xl={4} xxl>
                   <div className="card-forecast h-100">
                     <p className="forecastTitle">
                       {today + 4} {monthName(month)}
@@ -394,10 +420,10 @@ function App() {
                           return null;
                         })}
                       </div>
-                    )}                    
+                    )}
                   </div>
                 </Col>
-                <Col>
+                <Col xs={12} sm={6} md={12} lg={4} xl={4} xxl>
                   <div className="card-forecast h-100">
                     <p className="forecastTitle">
                       {today + 5} {monthName(month)}
@@ -430,7 +456,7 @@ function App() {
                           return null;
                         })}
                       </div>
-                    )}                    
+                    )}
                   </div>
                 </Col>
               </Row>
